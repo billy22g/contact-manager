@@ -23,9 +23,9 @@ describe 'the person view', type: :feature do
 end
 
   it 'adds a new phone number' do 
-    page.click_link('Add Phone Number')
+    page.click_on('Add Phone Number')
     page.fill_in('Number', with: '555-8888')
-    page.click_on('Create Phone Number')
+    page.click_on('Create Phone number')
     expect(current_path).to eq(person_path(person))
     expect(page).to have_content('555-8888')
   end
