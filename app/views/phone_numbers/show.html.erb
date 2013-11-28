@@ -7,7 +7,7 @@
 
 <p>
   <strong>Person:</strong>
-  <%= @phone_number.person_id %>
+  <%= @phone_number.person.first_name + " " + @phone_number.person.last_name %>
 </p>
 
 <%= link_to 'Edit', edit_phone_number_path(@phone_number) %> |
