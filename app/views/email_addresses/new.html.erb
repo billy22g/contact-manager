@@ -1,0 +1,11 @@
+<h1>Add a new email for <%= @email_address.person.first_name + " " + @email_address.person.last_name %></h1>
+
+<%= form_for(@email_address) do |f| %>
+  <div class="field">
+    <%= f.label :email_address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
