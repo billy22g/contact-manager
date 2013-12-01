@@ -21,6 +21,17 @@ class EmailAddressesController < ApplicationController
     flash.notice = "Email successfully deleted!"
   end
 
+  def edit
+    @email_address = EmailAddress.find(params[:id])
+  end
+
+  def update
+    @email_address = EmailAddress.find(params[:id])
+    @email_address.update(email_params)
+    redirect_to @email_address.person
+    flash.notice = "Email successfully updated!"
+  end
+
   def email_params
     params.require(:email_address).permit(:address, :person_id)
   end
