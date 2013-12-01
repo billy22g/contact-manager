@@ -12,6 +12,9 @@
 
 <p>
   <strong>Phone Numbers:</strong>
+  <% if @person.phone_numbers.empty? %>
+  None
+  <% end %>
 </p>
 
 <ul>
@@ -24,6 +27,9 @@
 
 <p>
   <strong>Email Addresses:</strong>
+  <% if @person.email_addresses.empty? %>
+  None
+  <% end %>
 </p>
 
 <ul>
