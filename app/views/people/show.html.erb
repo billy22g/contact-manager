@@ -10,6 +10,10 @@
   <%= @person.last_name %>
 </p>
 
+<p>
+  <strong>Phone Numbers:</strong>
+</p>
+
 <ul>
   <% @person.phone_numbers.each do |phone| %>
     <li><%= phone.number %> | 
@@ -17,8 +21,12 @@
   <% end %>
 </ul>
 
+<p>
+  <strong>Email Addresses:</strong>
+</p>
+
 <ul>
-  <%= @person.email_addresses.each do |email| %>
+  <% @person.email_addresses.each do |email| %>
     <li><%= email.address %> |
         <%= link_to "Delete", email_address_path(email), method: :delete, data: { confirm: "Are you sure?"} %></li>
   <% end %>

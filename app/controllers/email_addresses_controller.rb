@@ -8,10 +8,17 @@ class EmailAddressesController < ApplicationController
     @email_address = EmailAddress.new(email_params)
     if @email_address.save
       redirect_to @email_address.person
-      flash.notice = "This email was successfully added to #{@email_address.person.first_name}"
+      flash.notice = "This email was successfully added for #{@email_address.person.first_name}"
     else
-      render action: 'new'
+      render :new
     end
+  end
+
+  def destroy
+    @email_address = EmailAddress.find(params[:id])
+    @email_address.destroy
+    redirect_to @email_address.person
+    flash.notice = "Email successfully deleted!"
   end
 
   def email_params
