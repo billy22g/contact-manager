@@ -25,15 +25,11 @@ class PhoneNumbersController < ApplicationController
   # POST /phone_numbers.json
   def create
     @phone_number = PhoneNumber.new(phone_number_params)
-
-    respond_to do |format|
-      if @phone_number.save
-        format.html { redirect_to @phone_number.contact, notice: 'Phone number was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @phone_number }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @phone_number.errors, status: :unprocessable_entity }
-      end
+   
+    if @phone_number.save
+      redirect_to @phone_number.contact, notice: 'Phone number was successfully created.'
+    else
+      render action: 'new'
     end
     
   end
