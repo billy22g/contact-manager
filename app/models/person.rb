@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   
   validates :first_name, :last_name, presence: true
 
-  # def order_by
-  #   PhoneNumber.sort
-  # end
+  def self.by_last_name
+    order("last_name")
+  end
 end
