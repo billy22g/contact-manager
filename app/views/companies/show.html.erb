@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Phone Numbers:</strong>
+  <% if @company.phone_numbers.empty? %>
+  None
+  <% end %>
+</p>
+
+<ul>
+  <% @company.phone_numbers.each do |phone| %>
+    <li><%= phone.number %> | 
+        <%= link_to "Edit", edit_phone_number_path(phone) %> |
+        <%= link_to "Delete", phone_number_path(phone), method: :delete, data: { confirm: "Are you sure?" } %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Phone Number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %> |
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

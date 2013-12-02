@@ -5,7 +5,7 @@ describe PhoneNumbersController do
   # This should return the minimal set of attributes required to create a valid
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "number" => "MyString", "person_id" => 1 } }
+  let(:valid_attributes) { { "number" => "MyString", "contact_id" => 1, "contact_type" => "Person" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -47,7 +47,7 @@ describe PhoneNumbersController do
     describe "with valid params" do
 
       let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
-      let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+      let(:valid_attributes) { {number: '555-1234', contact_id: alice.id, contact_type: "Person"} }
 
       it "creates a new PhoneNumber" do
         expect {
@@ -86,6 +86,10 @@ describe PhoneNumbersController do
 
   describe "PUT update" do
     describe "with valid params" do
+
+      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+      let(:valid_attributes) { {number: '555-1234', contact_id: alice.id, contact_type: 'Person'} }
+
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         # Assuming there are no other phone_numbers in the database, this
@@ -102,10 +106,10 @@ describe PhoneNumbersController do
         assigns(:phone_number).should eq(phone_number)
       end
 
-      it "redirects to the phone_number" do
+      it "redirects to the person associated with the phone number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
-        response.should redirect_to(phone_number)
+        response.should redirect_to(phone_number.contact)
       end
     end
 
@@ -129,6 +133,10 @@ describe PhoneNumbersController do
   end
 
   describe "DELETE destroy" do
+
+    let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+    let(:valid_attributes) { {number: '555-1234', contact_id: alice.id, contact_type: 'Person'} }
+
     it "destroys the requested phone_number" do
       phone_number = PhoneNumber.create! valid_attributes
       expect {
@@ -139,7 +147,7 @@ describe PhoneNumbersController do
     it "redirects to the person list" do
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, {:id => phone_number.to_param}, valid_session
-      response.should redirect_to(person_path(phone_number.person))
+      response.should redirect_to(phone_number.contact)
     end
   end
 

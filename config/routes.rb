@@ -1,4 +1,7 @@
 ContactManager::Application.routes.draw do
+  root "people#index"
+  resources :companies
+
   resources :phone_numbers
   resources :email_addresses
 
