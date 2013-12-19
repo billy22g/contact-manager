@@ -1,5 +1,5 @@
 ContactManager::Application.routes.draw do
-  root "people#index"
+  root :to => "people#index"
   resources :companies
 
   resources :phone_numbers
