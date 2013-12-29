@@ -1,6 +1,6 @@
-<% if @email_address.contact.first_name %>
+<% if @email_address.contact_type == "Person" %>
   <h1>Add a new email for <%= @email_address.contact.first_name + " " + @email_address.contact.last_name %></h1>
-<% elsif @email_address.contact.name %>
+<% elsif @email_address.contact_type == "Company" %>
     <h1>Add a new email for <%= @email_address.contact.name %></h1>
 <% end %>
 
