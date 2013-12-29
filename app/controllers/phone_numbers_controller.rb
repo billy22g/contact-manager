@@ -42,11 +42,11 @@ class PhoneNumbersController < ApplicationController
 
   private
     
-    def set_phone_number
-      @phone_number = PhoneNumber.find(params[:id])
-    end
+  def set_phone_number
+    @phone_number = PhoneNumber.find(params[:id])
+  end
 
-    def phone_number_params
-      params.require(:phone_number).permit(:number, :contact_id, :contact_type)
-    end
+  def phone_number_params
+    params.require(:phone_number).permit(:number, :contact_id, :contact_type)
+  end
 end

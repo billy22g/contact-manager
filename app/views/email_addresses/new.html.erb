@@ -1,4 +1,8 @@
-<h1>Add a new email for <%= @email_address.person.first_name + " " + @email_address.person.last_name %></h1>
+<% if @email_address.contact.first_name %>
+  <h1>Add a new email for <%= @email_address.contact.first_name + " " + @email_address.contact.last_name %></h1>
+<% elsif @email_address.contact.name %>
+    <h1>Add a new email for <%= @email_address.contact.name %></h1>
+<% end %>
 
 <%= render 'form' %>
 

@@ -32,6 +32,8 @@ class EmailAddressesController < ApplicationController
     flash.notice = "Email successfully updated!"
   end
 
+  private
+
   def email_params
     params.require(:email_address).permit(:address, :contact_id)
   end
