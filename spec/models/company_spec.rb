@@ -17,4 +17,9 @@ describe Company do
     expect(phone_number.number).to eq('333-4444')
   end
 
+  it "responds with its emails after they're created" do 
+    email_address = basedirectory.email_addresses.build(address: "billy@basedirectory.com")
+    expect(email_address.address).to eq("billy@basedirectory.com")
+  end
+
 end
