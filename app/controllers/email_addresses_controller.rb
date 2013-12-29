@@ -35,6 +35,6 @@ class EmailAddressesController < ApplicationController
   private
 
   def email_params
-    params.require(:email_address).permit(:address, :contact_id)
+    params.require(:email_address).permit(:address, :contact_id, :contact_type)
   end
 end
